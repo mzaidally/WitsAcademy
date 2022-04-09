@@ -6,21 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="71dp"
-        android:layout_height="29dp"
-        android:text="Welcome"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="102dp" />
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="174dp" />
+        android:id="@+id/WitsLogo"
+        android:layout_width="413dp"
+        android:layout_height="490dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="121dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wits" />
 </androidx.constraintlayout.widget.ConstraintLayout>
