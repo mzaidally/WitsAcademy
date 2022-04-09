@@ -1,13 +1,46 @@
+import org.yaml.snakeyaml.DumperOptions
+import org.yaml.snakeyaml.Yaml
+
+
 buildscript {
+    repositories {
+        mavenCentral()
+    }
     dependencies {
+        classpath group: 'org.yaml', name: 'snakeyaml', version: '1.21'
         classpath 'com.google.gms:google-services:4.3.10'
     }
-}// Top-level build file where you can add configuration options common to all sub-projects/modules.
+}
+
 plugins {
     id 'com.android.application' version '7.1.2' apply false
     id 'com.android.library' version '7.1.2' apply false
 }
 
+
+ext {
+    buildToolsVersion = '27.202'
+}
+
+task updateYAMLFile() {
+    def configurationYAML = "cfg.yaml"
+
+    inputs.files buildscript.sourceFile
+    outputs.files configurationYAML
+
+    DumperOptions options = new DumperOptions()
+    options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)
+    options.setPrettyFlow(true)
+    Yaml yaml = new Yaml(options)
+
+    ext {
+        updateGlobalProperties = { cfg, name, version ->
+            def index = (int) cfg.env.global.findIndexValues { it ==~ /$name.*/ }[0]
+            cfg.env.global.set(index, name + '=' + version)
+        }
+    }
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
